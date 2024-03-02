@@ -1,0 +1,45 @@
+{
+    "components": {
+        "header": {
+            "menu":{
+                "home": "Home",
+                "saved": "Saved",
+                "profile": {
+                    "title": "Profile",
+                    "settings": "Settings",
+                    "logout": "Logout"
+                
+                }
+            }
+        },
+        "buttons": {
+            "login": "Login",
+            "logout": "Logout",
+            "register": "Sing up"
+        },
+        "footer": {
+            "legal": {
+                "privacy": "Privacy policy",
+                "terms": "Terms of use"
+            },
+            "copyright": "{{year}} Francisco Coya. All rights reserved."
+        },
+        "form":{
+            "input": {
+                "email": "email",
+                "password": "password",
+                "remember": "repeat password",
+                "forgot": "Forgot your password?",
+                "name": "name"
+            },
+            "button": {
+                "login": "login"
+            }
+        }
+    },
+    "pages": {
+        "login": {
+            "title": "Login"
+        }
+    }
+}
