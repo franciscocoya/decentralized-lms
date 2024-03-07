@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
-import { useTranslations } from "next-intl";
 import { getLocaleFromPath } from "@/lib/string";
+import { useTranslations } from "next-intl";
 
 const MainNavigationMenu = () => {
   const t = useTranslations("components.header.menu"); // translations
