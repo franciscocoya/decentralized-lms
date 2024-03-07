@@ -3,6 +3,7 @@ import {
   buildAuthenticatedFetch,
   createDpopHeader,
   generateDpopKeyPair,
+  isSupportedTokenType,
 } from "@inrupt/solid-client-authn-core";
 import axios from "axios";
 
@@ -17,9 +18,9 @@ const login = async (email: string, password: string): Promise<any> => {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ email, password }),
-    })
+    });
 
-    if(response.status !== 200){
+    if (response.status !== 200) {
       return Promise.reject(new Error("Bad credentials!"));
     }
 
@@ -29,7 +30,18 @@ const login = async (email: string, password: string): Promise<any> => {
       const data = await autorizeAndLogin(authorization);
 
       if (data) {
-        await generateToken(data);
+        await generateToken(data).then(() => {
+          // redirect to /profile
+          if (
+            sessionStorage.getItem("accessToken") &&
+            sessionStorage.getItem("dpopKey")
+          ) {
+            window.location.href = "/es/profile";
+            return Promise.resolve();
+          } else {
+            return Promise.reject(new Error("Bad credentials!"));
+          }
+        });
       }
     }
   } catch (error) {
@@ -63,9 +75,12 @@ const generateToken = async (data: AuthTokenData): Promise<void> => {
     if (accessToken) {
       sessionStorage.setItem("accessToken", accessToken);
       sessionStorage.setItem("dpopKey", JSON.stringify(dpopKey));
+
+      return Promise.resolve();
     }
   } catch (error) {
     console.error("There was an error generating the token:\n" + error);
+    return Promise.reject(error);
   }
 };
 
@@ -79,6 +94,7 @@ const autorizeAndLogin = async (
 ): Promise<AuthTokenData | undefined> => {
   try {
     const indexResponse = await fetch(`${ACCOUNT_BASE_URL}/`, {
+      method: "GET",
       headers: { authorization: `CSS-Account-Token ${authorization}` },
     });
 
@@ -141,4 +157,17 @@ const myFetch = async (accessToken: string) => {
   }
 };
 
-export { login, logout, myFetch, register };
+/**
+ *
+ */
+const checkIsValidToken = async (accessToken: string): Promise<boolean> => {
+  try {
+    await isSupportedTokenType(accessToken);
+    return true;
+  } catch (error) {
+    console.error("Error checking token type: " + error);
+    return false;
+  }
+};
+
+export { login, logout, myFetch, register, checkIsValidToken };

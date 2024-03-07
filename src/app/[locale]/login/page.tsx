@@ -28,22 +28,29 @@ const LoginPage: React.FC = () => {
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
 
   const handleLogin: SubmitHandler<FieldValues> = (data) =>
-    login(data.email, data.password).catch((error) => {
-      if (error) {
-        setLoginErrorMsg("Invalid email or password");
-      }
-    });
+    login(data.email, data.password)
+      .catch((error) => {
+        if (error) {
+          setLoginErrorMsg("Invalid email or password");
+        }
+      })
+      .then(() => {
+        if (sessionStorage.getItem("accessToken") !== null) {
+          window.location.href = `/es/profile`;
+        }
+      });
 
   return (
     <article className="h-full flex flex-col justify-center items-center gap-[20px]">
       <BaseHeading text={t("title")} />
       <Card className="w-[350px] border-none shadow-none flex flex-col gap-3">
         <Form {...form}>
-          <form onSubmit={handleLogin} className="space-y-5">
+          <form onSubmit={handleSubmit(handleLogin)} className="space-y-5">
             <FormField
               control={form.control}
               name={tC("form.input.email")}
@@ -54,7 +61,7 @@ const LoginPage: React.FC = () => {
                     <Input
                       type="text"
                       placeholder="ie. uoxxxx@uniovi.es"
-                      {...register("email")}
+                      {...register("email", { required: true })}
                     />
                   </FormControl>
                   {/* <FormDescription>Email</FormDescription> */}
@@ -71,7 +78,10 @@ const LoginPage: React.FC = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" {...register("password")} />
+                    <Input
+                      type="password"
+                      {...register("password", { required: true })}
+                    />
                   </FormControl>
                   {/* <FormDescription>Password</FormDescription> */}
                   {errors.password && (
