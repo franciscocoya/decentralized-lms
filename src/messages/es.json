@@ -1,0 +1,46 @@
+{
+    "components": {
+        "header": {
+            "menu":{
+                "home": "Inicio",
+                "saved": "Guardados",
+                "profile": {
+                    "title": "Perfil",
+                    "settings": "Ajustes",
+                    "logout": "Cerrar sesión"
+                
+                }
+            }
+        },
+        "buttons": {
+            "login": "Iniciar sesión",
+            "logout": "Cerrar sesión",
+            "register": "Registrarse"
+        },
+        "footer": {
+            "legal": {
+                "privacy": "Política de privacidad",
+                "terms": "Términos y condiciones"
+            },
+            "copyright": "Francisco Coya. Todos los derechos reservados"
+        },
+        "form":{
+            "input": {
+                "email": "correo electrónico",
+                "password": "contraseña",
+                "remember": "recordar",
+                "forgot": "¿Olvidaste tu contraseña?",
+                "register": "registrarse",
+                "name": "nombre"
+            },
+            "button": {
+                "login": "login"
+            }
+        }
+    },
+    "pages": {
+        "login": {
+            "title": "Iniciar sesión"
+        }
+    }
+}
