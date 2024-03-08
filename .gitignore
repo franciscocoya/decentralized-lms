@@ -38,3 +38,8 @@ next-env.d.ts
 
 # Sentry Config File
 .sentryclirc
+
+# Exclude VSCode files
+/.vscode/*
+## But include following
+!/.vscode/launch.json
