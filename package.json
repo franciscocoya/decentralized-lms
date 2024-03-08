@@ -1,10 +1,11 @@
 {
   "name": "decentralized-lms",
   "author": "Francisco Coya Abajo",
+  "organization": "University Of Oviedo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4000",
+    "dev": "next -p 4000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,6 +17,7 @@
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
+    "@sentry/nextjs": "^7.105.0",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -38,6 +40,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
