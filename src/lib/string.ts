@@ -1,3 +1,11 @@
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+const capitalize = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1);
 
-export { capitalize };
+/**
+ * Extract the locale from the path
+ * @param path  The path to extract the locale from
+ * @returns
+ */
+const getLocaleFromPath = (path: string): string => path.split("/")[1];
+
+export { capitalize, getLocaleFromPath };

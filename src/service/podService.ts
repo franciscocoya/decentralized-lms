@@ -1,5 +1,3 @@
-import { fetch } from 'solid-auth-client';
-import { namedNode, literal, quad, store } from 'rdflib';
 const createNewPod = async () => {
     const query = `
         PREFIX solid: <http://www.w3.org/ns/solid/terms#>

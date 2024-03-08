@@ -11,25 +11,28 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
-import { useLocale, useTranslations } from "next-intl";
+import { getLocaleFromPath } from "@/lib/string";
+import { useTranslations } from "next-intl";
 
 const MainNavigationMenu = () => {
   const t = useTranslations("components.header.menu"); // translations
-
-  const { locale } = useLocale();
 
   return (
     <NavigationMenu>
       <NavigationMenuList>
         {/* Home */}
-        <Link href={`/${locale}`} legacyBehavior passHref>
+        <Link href={`/${getLocaleFromPath ?? "es"}`} legacyBehavior passHref>
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             {t("home")}
           </NavigationMenuLink>
         </Link>
 
         {/* Saved courses */}
-        <Link href={`/${locale}/saved`} legacyBehavior passHref>
+        <Link
+          href={`/${getLocaleFromPath ?? "es"}/saved`}
+          legacyBehavior
+          passHref
+        >
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             {t("saved")}
           </NavigationMenuLink>
