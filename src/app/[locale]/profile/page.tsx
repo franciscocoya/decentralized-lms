@@ -1,21 +1,25 @@
-"use client"
+"use client";
 
-import { checkIsValidToken } from "@/service/authService";
+import PageTransition from "@/components/transitions/pageTransition";
+import { PROFILE_POD_NAME } from "@/constants";
+import { getProfileData } from "@/service/podService";
 import React, { useEffect } from "react";
 
 const UserProfilePage: React.FC = () => {
-  useEffect(() => {
-    checkIsValidToken(sessionStorage.getItem("accessToken") ?? "").then(
-      (res) => {
-        console.log("isValid: ", res);
-      }
+  const loadData = async () => {
+    await getProfileData(
+      sessionStorage.getItem(PROFILE_POD_NAME) ?? "pod-example-1"
     );
+  };
+
+  useEffect(() => {
+    loadData();
   }, []);
 
   return (
-    <div>
+    <PageTransition>
       <h1>User profile page</h1>
-    </div>
+    </PageTransition>
   );
 };
 

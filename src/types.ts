@@ -7,8 +7,8 @@ type LocaleLayoutProps = {
   children: React.ReactNode;
   params: {
     locale: "es-ES" | "en-UK";
-  }
-}
+  };
+};
 
 // react-hook-form
 type Inputs = {
@@ -24,8 +24,21 @@ type CustomFormMessageProps = {
 
 // Auth Service
 interface AuthTokenData {
-  id: string,
-  secret: string,
+  id: string;
+  secret: string;
 }
 
-export type { Inputs, AuthTokenData, CustomFormMessageProps, LocaleLayoutProps, RootLayoutProps };
+interface UserSessionAuthData {
+  email?: string;
+  token?: string;
+  isLogged: boolean;
+}
+
+export type {
+  Inputs,
+  AuthTokenData,
+  CustomFormMessageProps,
+  LocaleLayoutProps,
+  RootLayoutProps,
+  UserSessionAuthData,
+};

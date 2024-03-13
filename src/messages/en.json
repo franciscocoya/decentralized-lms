@@ -9,7 +9,9 @@
                     "settings": "Settings",
                     "logout": "Logout"
                 
-                }
+                },
+                "login": "Login",
+                "register": "Register"
             }
         },
         "buttons": {
@@ -41,5 +43,9 @@
         "login": {
             "title": "Login"
         }
+    },
+    "messages": {
+        "loading": "⚡Loading...",
+        "passwordsDontMatch": "Passwords don't match"
     }
 }

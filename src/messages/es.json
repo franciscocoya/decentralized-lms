@@ -9,7 +9,9 @@
                     "settings": "Ajustes",
                     "logout": "Cerrar sesión"
                 
-                }
+                },
+                "login": "Iniciar sesión",
+                "register": "Crear una cuenta"
             }
         },
         "buttons": {
@@ -28,7 +30,7 @@
             "input": {
                 "email": "correo electrónico",
                 "password": "contraseña",
-                "remember": "recordar",
+                "remember": "repetir contraseña",
                 "forgot": "¿Olvidaste tu contraseña?",
                 "register": "registrarse",
                 "name": "nombre"
@@ -42,5 +44,9 @@
         "login": {
             "title": "Iniciar sesión"
         }
+    },
+    "messages": {
+        "loading": "⚡Cargando...",
+        "passwordsDontMatch": "Las contraseñas no coinciden"
     }
 }

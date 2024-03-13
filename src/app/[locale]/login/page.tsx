@@ -22,9 +22,12 @@ import { capitalize } from "@/lib/string";
 
 const LoginPage: React.FC = () => {
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [isLoginProcessing, setIsLoginProcessing] = useState(false);
   const form = useForm();
+  
   const t = useTranslations("pages.login");
   const tC = useTranslations("components");
+  const tM = useTranslations("messages");
 
   const {
     register,
@@ -32,18 +35,23 @@ const LoginPage: React.FC = () => {
     formState: { errors },
   } = useForm();
 
-  const handleLogin: SubmitHandler<FieldValues> = (data) =>
+  const handleLogin: SubmitHandler<FieldValues> = (data) => {
+    setIsLoginProcessing(true);
     login(data.email, data.password)
-      .catch((error) => {
-        if (error) {
-          setLoginErrorMsg("Invalid email or password");
-        }
-      })
-      .then(() => {
-        if (sessionStorage.getItem("accessToken") !== null) {
-          window.location.href = `/es/profile`;
-        }
-      });
+    .catch((error) => {
+      if (error) {
+        setLoginErrorMsg("Invalid email or password");
+      }
+    })
+    .then(() => {
+      if (sessionStorage.getItem("accessToken") !== null) {
+        window.location.href = `/es/profile`;
+      }
+    }).finally(() => {
+      setIsLoginProcessing(false);
+    });
+  }
+    
 
   return (
     <article className="h-full flex flex-col justify-center items-center gap-[20px]">
@@ -91,7 +99,7 @@ const LoginPage: React.FC = () => {
               )}
             />
             <Button type="submit" className="w-full">
-              {tC("buttons.login")}
+              {isLoginProcessing ? tM("loading") : tC("buttons.login")}
             </Button>
           </form>
         </Form>
